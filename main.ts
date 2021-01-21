@@ -116,7 +116,6 @@ scene.cameraFollowSprite(bottomGoat)
 let topGoat: Sprite = null
 topGoat = bottomGoat
 let newGoat: Sprite = null
-let threshold = 10
 createGoat()
 
 
@@ -133,7 +132,6 @@ function createGoat(){
 }
 
 controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
-    newGoat.setFlag(SpriteFlag.BounceOnWall, false)
     newGoat.vx = 0
     newGoat.ay = 300
 })
@@ -141,6 +139,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
 sprites.onOverlap(SpriteKind.StackGoat, SpriteKind.Goat, function(sprite: Sprite, droppedGoat: Sprite) {
     droppedGoat.ay = 0
     droppedGoat.vy = 0
+
     if (theGoatLanded(droppedGoat)){
         droppedGoat.setKind(SpriteKind.StackGoat)
         stackGoats.push(droppedGoat)
